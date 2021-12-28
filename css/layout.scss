@@ -1,0 +1,112 @@
+body {
+    background-color: $body-BG-color;
+    overflow-y: hidden;
+}
+body,
+button,
+input {
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun,
+        sans-serif;
+}
+//20190925新增調整
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.el-form--label-top .el-form-item__label {
+    padding: 0;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
+.el-table {
+    .cell.el-tooltip {
+        white-space: normal;
+    }
+    .cell {
+        //word-break: keep-all;
+        word-break: break-word;
+        //white-space: pre-line;
+    }
+    td.is-number {
+        .cell.el-tooltip {
+            word-break: break-word;
+        }
+    }
+    th.pre{
+        .cell{
+            white-space: pre-line;
+        }
+    }
+
+    th{
+        font-size: 13px;
+    }
+
+    &.el-table--striped{
+        .el-table__body{
+            .el-table__row--level-1{
+                &:hover{
+                    opacity: 0.8;
+                }
+                td{
+                    background: #ffffe9;
+                }
+            }
+            tr.el-table__row--striped{
+                &.el-table__row--level-1{
+                    td{
+                        background: #ffffe9;
+                    }
+                }
+            }
+        }
+    }
+}
+.el-table [class*=el-table__row--level]{
+    .el-table__expand-icon{
+        float: right;
+        margin-top: 2px;
+    }
+}
+
+.search_bar {
+    > .el-row:first-child {
+        margin: 0px 0 0;
+        & + .el-row {
+            margin: 0 0 10px 0;
+        }
+    }
+}
+
+.el-button{
+    &.block{
+        display: block;
+    }
+    &.flat{
+        height: 24px;
+        padding: 0 8px;
+        line-height: 22px;
+    }
+    &+.el-button{
+        margin-left: 0;
+    }
+}
+.el-tag{
+    &+.el-button{
+        margin-top: 5px;
+    }
+}
+
+.el-dialog__body{
+    .el-dialog__description {
+        max-height: 50vh;
+        overflow: auto;
+        line-height: 150%;
+        white-space: pre-line
+    }
+}
+.pre_line{
+    white-space: pre-line;
+}

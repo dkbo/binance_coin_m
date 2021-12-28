@@ -1,0 +1,410 @@
+a {
+    color: $--link-primary-font-color;
+    &:hover {
+        color: lighten($--link-primary-font-color, 15%)
+    }
+}
+.el-link {
+    justify-content: left;
+    &--gray {
+        color: #bbbbbb;
+        &:hover {
+            color: #888888;
+        }
+    }
+    &.el-link--primary {
+        color: $link;
+        opacity: 1;
+        &:hover {
+            color: $link-h;
+            opacity: 0.5;
+        }
+    }
+}
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+    font-weight: 400 !important;
+}
+.el-dialog {
+    transform: none;
+    left: 0;
+    position: relative;
+    margin: 0 auto;
+}
+
+.el-range-editor.el-input__inner {
+    display: inline-flex !important;
+}
+
+.el-dialog__header {
+    background: $--color-primary;
+    padding-bottom: 20px;
+    .el-dialog__title {
+        color: white;
+    }
+}
+.el-menu-item.is-active {
+    border-right: 5px solid $--color-primary;
+}
+.el-message-box {
+    .el-message-box__status {
+        // top: 23px;
+    }
+}
+.el-table {
+    th {
+        padding: 9px 0;
+        color: $table-th-color;
+        background-color: $table-th-bg;
+        border-right: 1px solid #f6f9fc;
+    }
+    // th 的上下過濾箭頭
+    .descending .sort-caret.descending {
+        border-top-color: $sortArow-active;
+    }
+    .ascending .sort-caret.ascending {
+        border-bottom-color: $sortArow-active;
+    }
+    .sort-caret.ascending {
+        border-bottom-color: $sortArow;
+        top: 0;
+    }
+    .sort-caret.descending {
+        border-top-color: $sortArow;
+        bottom: 0;
+    }
+    .caret-wrapper {
+        border-bottom-color: #ebeef5;
+        height: 22px;
+    }
+}
+// td 樣式
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+    background: transparent;
+}
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+    background-color: #F5F7FA;
+    // border-right: 1px solid #f5f7fa;
+}
+.el-table--border {
+    border-color: $table-border;
+    th, th.is-leaf {
+        border-right: 1px solid #{$table-border-th};
+        border-bottom: 1px solid #{$table-border};
+    }
+    td {
+        border-color: $table-border;
+    }
+    .el-table td {
+        border-color: $table-border;
+    }
+}
+.el-table--group::after, .el-table--border::after, .el-table::before {
+    background-color: $table-border;
+}
+/******* 樣式改風格 *******/
+// 按鈕顏色
+.el-button--success {
+    color: #212529;
+    background: #4bcf99;
+    border-color: #4bcf99;
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #fff;
+        background: #33c087;
+        border-color: #31b680;
+    }
+    &.is-disabled, &.is-disabled:hover {
+        opacity: 0.5;
+        color: #212529;
+        background: #4bcf99;
+        border-color: #4bcf99;
+    }
+}
+.el-button--default {
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #4f5f6f;
+        background: #ececec;
+        border-color: #b9c3cf;
+    }
+}
+.el-button--warning {
+    color: #212529;
+    background-color: #fe974b;
+    border-color: #fe974b;
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #212529;
+        background-color: #ff8429;
+        border-color: #ff8429;
+    }
+    &.is-disabled, &.is-disabled:hover {
+        opacity: 0.5;
+        color: #212529;
+        background-color: #fe974b;
+        border-color: #fe974b;
+    }
+}
+.el-button--danger {
+    color: #ffffff;
+    background-color: #F56C6C;
+    border-color: #F56C6C;
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #ffffff;
+        background-color: #ff1111;
+        border-color: #ff0404;
+    }
+    &.is-disabled, &.is-disabled:hover {
+        opacity: 0.5;
+        color: #ffffff;
+        background-color: #F56C6C;
+        border-color: #F56C6C;
+    }
+}
+.el-button--primary {
+    background: $primary;
+    border-color: $primary;
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #ffffff;
+        background: $primary-btn-h;
+        border-color: $primary-btn-h;
+    }
+    &.is-disabled, &.is-disabled:hover {
+        opacity: 0.5;
+        background: $primary;
+        border-color: $primary;
+    }
+}
+
+.el-button--blue {
+    background: #409EFF;
+    border-color: #409EFF;
+    color: #212529;
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        color: #ffffff;
+        background: #66b1ff;
+        border-color: #66b1ff;
+    }
+    &.is-disabled, &.is-disabled:hover {
+        opacity: 0.5;
+        background: #409EFF;
+        border-color: #409EFF;
+        color: #212529;
+    }
+}
+
+// 麵包屑
+.el-breadcrumb {
+    padding: 10px;
+    // background: #ffffff;
+    // border-bottom: 1px solid #e6e6e6;
+    .el-breadcrumb__inner.is-link:hover,
+    .el-breadcrumb__inner a {
+        display: initial;
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+// 卡片
+.el-card {
+    box-shadow: 1px 1px 5px rgba(126, 142, 159, 0.1);
+}
+// 下拉 select、input
+.el-select .el-input.is-focus .el-input__inner,
+.el-select .el-input__inner:focus,
+.el-input__inner:focus,
+.el-textarea__inner:focus {
+    border-color: $primary;
+}
+.el-select-dropdown__item.selected,
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+    color: $primary;
+}
+.el-range-editor.is-active,
+.el-range-editor.is-active:hover {
+    border-color: $primary;
+}
+.el-select-dropdown__item {
+    padding: 0 30px 0 20px;
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected::after {
+    right: 10px;
+}
+// checkbox
+.el-checkbox__input {
+    .el-checkbox__inner {
+        border: 1px solid #bdbdbd;
+        &:hover {
+            border-color: $primary;
+        }
+    }
+    &.is-checked .el-checkbox__inner {
+        background-color: $primary;
+        border-color: $primary;
+    }
+    &.is-checked + .el-checkbox__label {
+        color: $primary;
+    }
+}
+// tab
+.el-tabs--border-card > .el-tabs__header .el-tabs__item {
+    &:not(.is-disabled):hover,
+    &.is-active {
+        color: $primary;
+    }
+}
+// 日曆
+.el-picker-panel__icon-btn:hover {
+    color: $calendar;
+}
+.el-date-table td {
+    &.today span,
+    &.available:hover {
+        color: $calendar;
+    }
+    &.start-date span,
+    &.end-date span,
+    &.current:not(.disabled) span {
+        background-color: $calendar;
+    }
+}
+.el-month-table td.current:not(.disabled) .cell,
+.el-year-table td.current:not(.disabled) .cell,
+.el-month-table td.today:not(.disabled) .cell:hover,
+.el-year-table td:not(.disabled) .cell:hover,
+.el-month-table td:not(.disabled) .cell:hover {
+    color: #ffffff;
+    background-color: $calendar;
+}
+.el-month-table td.today .cell,
+.el-year-table td.today .cell,
+.el-date-picker__header-label:hover {
+    color: $calendar;
+}
+// 彈窗
+.el-dialog__header {
+    background: $primary;
+}
+// 頁碼
+.el-pagination {
+    .btn-prev, .btn-next, button:disabled {
+        background-color: transparent;
+        min-width: 30px;
+    }
+    button:hover {
+        color: $primary;
+    }
+}
+.el-pager li {
+    padding: 0 3px;
+    min-width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: normal;
+    color: #919191;
+    background: #ffffff;
+    border: 1px solid #dcdfe6;
+    border-radius: 50px;
+    margin-right: 3px;
+    &.active,
+    &:hover {
+        color: #ffffff;
+        background: $primary;
+        border-color: $primary;
+        + li {
+            border: 1px solid #dcdfe6;
+            &:hover {
+                border-color: $primary;
+            }
+            &.active {
+                border: 1px solid $primary;
+            }
+        }
+    }
+    &.active {
+        box-shadow: 1px 1px 11px #dbdbdb;
+    }
+}
+.el-pagination__sizes .el-input .el-input__inner {
+    &:hover {
+        border-color: #e4d7d7;
+    }
+}
+.el-pagination .el-select .el-input .el-input__inner {
+    border-radius: 50px;
+}
+// 按鈕文字
+.el-button--text {
+    cursor: pointer;
+    color: #4bcf99;
+    &:focus {
+        color: #4bcf99;
+    }
+    &:hover {
+        color: lighten(#4bcf99, 15%);
+    }
+}
+// 泡泡
+.el-popper.noteBubble {
+    min-width: 100px;
+    max-width: 256px;
+    .noteContent {
+        overflow: hidden;
+        span {
+            max-height: 200px;
+            overflow: auto;
+            display: block;
+            width: calc(100% + 12px);
+            padding-right: 12px;
+        }
+    }
+}
+// 說明綠底文字
+.description {
+    display: inline-block;
+    border: 1px solid #cccccc;
+    color: #333333;
+    background: $description;
+    padding: 0.7em;
+    border-radius: 5px;
+    font-size: 12px;
+    margin: 0px 0px 10px 0px;
+}
+.el-select{
+    &.el-tag--ellipsis {
+        .el-tag:first-of-type {
+            max-width: 60%;
+            position: relative;
+            > .el-select__tags-text {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: inline-block;
+                width: calc(100% - 10px);
+                margin-right: 17px;
+            }
+            .el-tag__close {
+                position: absolute;
+                top: 5px;
+                right: 3px;
+            }
+        }
+    }
+}

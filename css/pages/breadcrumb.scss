@@ -1,0 +1,18 @@
+@import '../mixin'; // 變數 & mixin
+
+.app-breadcrumb.el-breadcrumb {
+    float: left;
+    display: inline-block;
+    font-size: 13px;
+    .no-redirect {
+      color: $breadcrumb-no;
+    }
+    .is_active, .is_activeDetails {
+      color: $breadcrumb-active;
+    }
+    .is_activeDetails {
+      &:hover {
+        color: $breadcrumb-h;
+      }
+    }
+}

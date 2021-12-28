@@ -1,0 +1,51 @@
+// https://fontawesome.com/icons?d=gallery&q=lett&m=free
+// Variables
+// --------------------------
+
+$fa-font-path:         "../webfonts" !default;
+$fa-font-size-base:    16px !default;
+$fa-font-display:      auto !default;
+$fa-css-prefix:        fa !default;
+$fa-version:           "5.11.2" !default;
+$fa-border-color:      #eee !default;
+$fa-inverse:           #fff !default;
+$fa-li-width:          2em !default;
+$fa-fw-width:          (20em / 16);
+$fa-primary-opacity:   1 !default;
+$fa-secondary-opacity: .4 !default;
+
+// Convenience function used to set content property
+@function fa-content($fa-var) {
+  @return unquote("\"#{ $fa-var }\"");
+}
+
+//主選單
+$fa-var-tachometer-alt: \f3fd;
+$fa-var-address-card: \f2bb;
+$fa-var-search-dollar: \f688;
+$fa-var-history: \f1da;
+$fa-var-file-alt: \f15c;
+$fa-var-university: \f19c;
+$fa-var-sms: \f7cd;
+// $fa-var-admin-log: \f5da;
+$fa-var-toolbox: \f552;
+$fa-var-credit-card: \f09d;
+// 設置
+$fa-var-user: \f007;
+$fa-var-key: \f084;
+$fa-var-user-plus: \f234;
+$fa-var-users: \f0c0;
+$fa-var-user-tag: \f507;
+$fa-var-sign-out-alt: \f2f5;
+// 总览
+$fa-var-sync-alt: \f2f1;
+$fa-var-university: \f19c;
+$fa-var-qrcode: \f029;
+// internal
+$fa-var-plus-circle: \f055;
+$fa-var-minus-circle: \f056;
+// header
+$fa-var-envelope: \f0e0;
+//withdraw_details
+$fa-var-semi-auto: \f5c0;
+$fa-var-entry-transaction: \f044;

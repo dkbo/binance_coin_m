@@ -1,0 +1,15 @@
+$fa-css-prefix: 'el-fa';
+$fa-font-path: '~@CSS/fontawesome/webfonts';
+
+@import './scss/fontawesome.scss';
+@import './scss/solid.scss';
+@import './scss/regular.scss';
+
+// Override Element UI's icon font
+.fas {
+    font-family: 'Font Awesome 5 Free' !important;
+}
+
+.fab {
+    font-family: 'Font Awesome 5 Brands' !important;
+}

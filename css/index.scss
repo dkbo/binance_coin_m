@@ -1,0 +1,18 @@
+@import 'reset';
+@import '~element-ui/lib/theme-chalk/display.css';
+@import 'mixin'; // 變數 & mixin
+@import 'elementUi';
+@import 'fontawesome';
+@import 'layout'; // 單模組內的共同樣式
+
+.dashboard {
+    .alipay{
+        background-image: url('/static/image/alipay.png');
+    }
+    .BanktoBank{
+        background-image: url('/static/image/BanktoBank.png');
+    }
+    .UnionPay{
+        background-image: url('/static/image/UnionPay.png');
+    }
+}

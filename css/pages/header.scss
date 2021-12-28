@@ -1,0 +1,38 @@
+@import '../mixin'; // 變數 & mixin
+
+.header {
+    color: #333;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 12px;
+    background-color: $header-bg-color;
+    .mark {
+        font-size: 24px;
+        display: inline-block;
+        line-height: 40px;
+        color: #FFEB3B;
+    }
+    .title {
+        float: left;
+        color: #ffffff;
+        height: 100%;
+        background-size: contain;
+        text-align: left;
+        font-size: 20px;
+        vertical-align: middle;
+        line-height: 46px;
+        min-height: 44px;
+        span {
+            display: inline-block;
+        }
+    }
+  }
+  @media screen and (max-width: 450px) {
+      .header {
+          .logo {
+            span {
+                display: none;
+            }
+        }
+      }
+  }

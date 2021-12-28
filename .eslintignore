@@ -1,0 +1,5 @@
+build/*.js
+sw.js
+sw*.js
+config/*.js
+src/components/element-ui/*

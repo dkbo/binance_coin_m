@@ -1,0 +1,89 @@
+// 只能放 變數 跟 mixin !!!
+
+/**
+   --- 換皮參數 ---
+*/
+
+// 圖片資料夾
+$imgFolder: static;
+
+$body-BG-color : #fff; // body背景顏色
+$header-bg-color: #000; // 頂端header背景顏色
+$primary: #7f8545; // 主色
+$primary-btn: $primary; // 按鈕主色
+$primary-btn-h: #2660A4; // 按鈕hover主色
+
+// sidebar 菜單展開項目
+$menuText: #bfcbd9;
+$menuActiveText: #bfcbd9;
+$subMenuActiveText: #f4f4f5;
+
+// header 右上(icon+語言選單)
+$header-icon: #5a5e66;
+$header-icon-h: #7f8545;
+$header-langSelect-c: #e8e8e8;
+$header-langSelect-bgc: #2e363f;
+$header-langSelect-border: 1px solid #525b66;
+$header-langSelect-arrow: #999;
+
+// 麵包屑
+$breadcrumb-no: #97a8be;
+$breadcrumb-active: #21ad38;
+$breadcrumb-h: $primary;
+
+// 連結
+$link: #21ad38;
+$link-h: lighten($link, 10%);
+
+// 表格
+$table-border-th: #e3e8ec; // 線條th
+$table-border: #ebeef5; // 線條
+$table-th-color: #7c838a; // th
+$table-th-bg: #f6f9fc; // th
+$sortArow: #d1d1d1; // 排序箭頭
+$sortArow-active: #666666; // 排序箭頭-active
+
+// 說明有底色文字
+$description: #e0edff;
+
+// 日曆
+$calendar: $primary;
+
+/**
+  --- 其他變數 ---
+*/
+
+$menuBg: $primary;
+$subMenuHover: $primary-btn-h;
+$menuHover: darken($primary, 8%);
+
+$subMenuBg: $primary;
+$subMenuHover: darken($primary, 8%);
+
+$sideBarWidth: 210px;
+
+$--color-info: #000 !default;
+/// color|1|Font Color|2
+$--color-text-primary: #000 !default;
+/// color|1|Font Color|2
+$--color-text-regular: #333 !default;
+/// color|1|Font Color|2
+$--color-text-secondary: #666 !default;
+/// color|1|Font Color|2
+$--color-text-placeholder: #999 !default;
+/* Link */
+$--link-primary-font-color: #1989fa !default;
+
+/*
+    EXPORT
+*/
+:export {
+    menuText: $menuText;
+    menuActiveText: $menuActiveText;
+    subMenuActiveText: $subMenuActiveText;
+    menuBg: $menuBg;
+    menuHover: $menuHover;
+    subMenuBg: $subMenuBg;
+    subMenuHover: $subMenuHover;
+    sideBarWidth: $sideBarWidth;
+}
