@@ -100,7 +100,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         ]),
         new WorkboxPlugin.InjectManifest({
             swSrc: `./src/sw.js`,
-            swDest: path.resolve(__dirname, '../dist', 'sw.js'),
+            swDest: path.resolve(__dirname, '../docs', 'sw.js'),
             importWorkboxFrom: 'disabled',
         })
     ]
