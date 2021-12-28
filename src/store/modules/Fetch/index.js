@@ -13,7 +13,7 @@ const statusHandle = {
             type: 'warning',
             showClose: false,
             distinguishCancelAndClose: true
-        }).then(() => (location.href = '/login'))
+        }).then(() => (location.href = '/'))
         return false
     },
     403: res => {

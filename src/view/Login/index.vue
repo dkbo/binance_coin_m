@@ -105,12 +105,9 @@ export default {
             form.validate(async (valid) => {
                 if (valid) {
                     this.loading = true
-                    if (this.isDev) {
-                        const isLogining = await this[_M.FETCH_LOGIN](this.form)
-                        isLogining && this.$router.replace('/')
-                    } else {
-                        form.$el.submit()
-                    }
+                    const isLogining = await this[_M.FETCH_LOGIN](this.form)
+                    isLogining && this.$router.replace('/')
+                    this.loading = false
                 } else {
                     console.log('error submit!!')
                     return false

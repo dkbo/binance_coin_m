@@ -5,6 +5,7 @@ import * as fn from '@API/PremiumIndex'
 const state = {
     isLoading: false,
     binanceConfig: getStorage(Storage.binanceConfig) || {},
+    auth: undefined,
     errors: {}
 }
 
@@ -24,7 +25,10 @@ const actions = {
             temp: 'binanceConfig',
             data: payload
         })
-        const res = await fn.PremiumIndexD_R(actions, {temp: 'premiumIndexList'})
+        const res = await dispatch(_M.FETCH, {
+            key: 'accountD_R',
+            temp: 'auth'
+        })
         if (res) {
             setStorage(Storage.binanceConfig, payload)
         } else {
@@ -44,6 +48,9 @@ const mutations = {
     // 是否載入中
     [_M.SET_LOADING](state, payload) {
         state.isLoading = payload
+    },
+    [_M.SET_TEMP_DATA](state, payload = {}) {
+        state[payload.temp] = payload.data
     }
 }
 const getters = {

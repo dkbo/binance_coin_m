@@ -142,7 +142,7 @@ const router = new Router(routeData)
 router.beforeEach((to, from, next) => {
     !firstPage && setRedirect()
     const notView = getNotView(to)
-    if (to.matched.some((record) => record.meta.auth) && !store.state.App.binanceConfig.API_KEY) {
+    if (to.matched.some((record) => record.meta.auth) && !store.getters.binanceConfig.API_KEY) {
         router.replace('/Login')
     } else if (notView) {
         next(firstPage)
