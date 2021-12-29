@@ -154,7 +154,7 @@ router.afterEach((to) => {
     const str = titleName
         ? titleName.map((key) => i18n.t(key)).join(' | ')
         : i18n.t(bName || title)
-    document.title = `${str}`
+    document.title = `DKBO | ${str}`
 })
 
 export default router

@@ -1,6 +1,7 @@
 <template>
     <div class="dashboard">
-        <el-row class="table-head" type="flex">
+        <div class="hidden-sm-and-down">
+            <el-row class="table-head" type="flex">
             <el-col>資產種類</el-col>
             <!-- <el-col>availableBalance</el-col> -->
             <!-- <el-col>crossUnPnl</el-col> -->
@@ -28,7 +29,7 @@
                 <el-col>{{sumMarginBalance}}</el-col>
             </el-row>
         </div>
-        <div class="table-body" ref="tableBody">
+        <div class="table-body" ref="tableBody" :style="{height: tableBodyHeight}">
             <el-row type="flex" align="middle" v-for="item in filterAccountDListAssets" :key="item.asset">
                 <el-col>{{item.asset}}</el-col>
                 <!-- <el-col>{{item.availableBalance}}</el-col> -->
@@ -62,16 +63,111 @@
                 </el-col>
             </el-row>
         </div>
+        </div>
+        <div class="hidden-md-and-up" ref="tableBody" :style="{height: tableBodyHeight}">
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>總資產</span>
+                </div>
+                <div class="card-body">
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>未實現盈虧</el-col>
+                            <el-col>{{sumUnrealizedProfit}}</el-col>
+                        </el-row>
+                    </div>
+                    <div class="item" >
+                        <el-row type="flex">
+                            <el-col>錢包</el-col>
+                            <el-col>{{sumWalletBalance}}</el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>總資產</el-col>
+                            <el-col>{{sumMarginBalance}}</el-col>
+                        </el-row>
+                    </div>
+                </div>
+            </el-card>
+            <el-card class="box-card" v-for="item in filterAccountDListAssets" :key="item.asset">
+                <el-row class="card-header" type="flex" slot="header" >
+                    <el-col>{{item.asset}}</el-col>
+                    <el-col class="card-head_right right">
+                        <router-link :to="{name: 'Income', query: {symbol: `${item.asset}USD_PERP`}}"><el-button type="text">歷史流水</el-button></router-link>
+                        <router-link :to="{name: 'FundingRate', query: {symbol: `${item.asset}USD_PERP`}}"><el-button type="text">歷史費率</el-button></router-link>
+                    </el-col>
+                </el-row>
+                <div class="card-body">
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>即時費率</el-col>
+                            <el-col :class="+item.ddd > 0 ? 'green' : 'red'">{{item.ddd}}</el-col>
+                        </el-row>
+                    </div>
+                    <div class="item" >
+                        <el-row type="flex">
+                            <el-col>預估套利</el-col>
+                            <el-col :class="+item.ccc > 0 ? 'green' : 'red'">{{item.ccc}}</el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>保證金</el-col>
+                            <el-col>{{item.positionInitialMargin}}</el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>可用金</el-col>
+                            <el-col>
+                                <div>{{item.maxWithdrawAmount}}</div>
+                                <div class="small">{{getUSD(item.maxWithdrawAmount, item)}}</div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>未實現盈虧</el-col>
+                            <el-col>
+                                <div :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">{{item.unrealizedProfit}}</div>
+                                <div class="small">{{getUSD(item.unrealizedProfit, item)}}</div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>錢包</el-col>
+                            <el-col>
+                                <div :class="+item.walletBalance > 0 ? 'green' : 'red'">{{item.walletBalance}}</div>
+                                <div class="small">{{getUSD(item.walletBalance, item)}}</div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex">
+                            <el-col>總資產</el-col>
+                            <el-col>
+                                <div :class="+item.marginBalance > 0 ? 'green' : 'red'">{{item.marginBalance}}</div>
+                                <div class="small">{{getUSD(item.marginBalance, item)}}</div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </div>
+            </el-card>
+        </div>
     </div>
 </template>
 <script>
 import Dashboard from '@M/Dashboard'
+import Table from '@C/Table'
 import { createNamespacedHelpers, mapGetters as rootGetters } from 'vuex'
 const name = 'Dashboard'
 const path = `${name}/`
 const { mapActions, mapGetters } = createNamespacedHelpers(path)
 export default {
     name,
+    mixins: [Table],
     beforeMount() {
         this.$root.$emit('setStore', { Dashboard })
         // this.fetchGetAccount()

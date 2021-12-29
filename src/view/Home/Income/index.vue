@@ -24,7 +24,7 @@
                 <el-col>總計</el-col>
                 <el-col></el-col>
                 <el-col>{{sumIncome}}</el-col>
-                <el-col></el-col>
+                <el-col class="hidden-sm-and-down"></el-col>
             </el-row>
         </div>
         <div class="table-body" ref="tableBody" :style="{height: tableBodyHeight}">
