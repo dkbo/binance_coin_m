@@ -1,12 +1,14 @@
 import * as fn from '@API/account'
 import * as PremiumIndexFn from '@API/PremiumIndex'
-Object.assign(fn, PremiumIndexFn)
+import * as listenkeyFn from '@API/listenkey'
+Object.assign(fn, PremiumIndexFn, listenkeyFn)
 
 // 共用資訊
 const state = {
     accountList: [],
     accountDList: [],
-    premiumIndexList: []
+    premiumIndexList: [],
+    listenKey: ''
 }
 
 const actions = {
@@ -46,7 +48,8 @@ const getters = {
                 }
                 return data
             })
-    }
+    },
+    listenKey: state => state.listenKey
 }
 
 export default {

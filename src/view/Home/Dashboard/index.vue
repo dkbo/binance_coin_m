@@ -67,7 +67,7 @@
         <div class="hidden-md-and-up" ref="tableBody" :style="{height: tableBodyHeight}">
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
-                    <span>總資產</span>
+                    <span>總計</span>
                 </div>
                 <div class="card-body">
                     <div class="item">
@@ -118,7 +118,7 @@
                         </el-row>
                     </div>
                     <div class="item">
-                        <el-row type="flex">
+                        <el-row type="flex" align="middle">
                             <el-col>可用金</el-col>
                             <el-col>
                                 <div>{{item.maxWithdrawAmount}}</div>
@@ -127,7 +127,7 @@
                         </el-row>
                     </div>
                     <div class="item">
-                        <el-row type="flex">
+                        <el-row type="flex" align="middle">
                             <el-col>未實現盈虧</el-col>
                             <el-col>
                                 <div :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">{{item.unrealizedProfit}}</div>
@@ -136,7 +136,7 @@
                         </el-row>
                     </div>
                     <div class="item">
-                        <el-row type="flex">
+                        <el-row type="flex" align="middle">
                             <el-col>錢包</el-col>
                             <el-col>
                                 <div :class="+item.walletBalance > 0 ? 'green' : 'red'">{{item.walletBalance}}</div>
@@ -145,7 +145,7 @@
                         </el-row>
                     </div>
                     <div class="item">
-                        <el-row type="flex">
+                        <el-row type="flex" align="middle">
                             <el-col>總資產</el-col>
                             <el-col>
                                 <div :class="+item.marginBalance > 0 ? 'green' : 'red'">{{item.marginBalance}}</div>

@@ -15,6 +15,9 @@ export const POST = 'post'
 export const PUT = 'put'
 export const DELETE = 'delete'
 
+//Wss.js
+export const WSS_CONNECT = 'w0'
+
 // 共用
 export const FETCH = 'c0'
 export const RESET = 'c1'

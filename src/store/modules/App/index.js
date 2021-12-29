@@ -16,6 +16,11 @@ const actions = {
         }
         if (state.binanceConfig.API_KEY) {
             dispatch(_M.AXIOS_SET_HEADERS, state.binanceConfig)
+            await dispatch(_M.FETCH, {
+                key: 'listenkeyD_U',
+                temp: 'listenKey'
+            })
+            dispatch(_M.WSS_CONNECT)
         }
     },
     async [_M.FETCH_LOGIN](actions, payload) {

@@ -74,6 +74,11 @@ export let API = {
             method: 'get',
             url: durl('dapi/v1/fundingRate'),
             msg: '查詢永續合約資金費率歷史'
+        },
+        listenKey: {
+            method: 'post',
+            url: durl('dapi/v1/listenKey'),
+            msg: '生成listenKey'
         }
     }
 }
