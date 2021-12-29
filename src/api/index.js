@@ -85,6 +85,7 @@ export let API = {
 
 export const Storage = {
     // locale: 'locale'
-    binanceConfig: 'binanceConfig'
+    binanceConfig: 'binanceConfig',
+    PremiumIndexOptions: 'PremiumIndexOptions'
 }
 export const Forage = {}

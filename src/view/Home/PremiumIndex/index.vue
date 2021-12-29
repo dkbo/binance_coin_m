@@ -1,8 +1,8 @@
 <template>
     <div class="PremiumIndex">
         <el-row class="control">
-            <el-select v-model="from.symbol" clearable filterable multiple collapse-tags>
-                <el-option v-for="{symbol, pair} in premiumIndexList" :value="symbol" :key="symbol" :label="pair" />
+            <el-select v-model="from.symbol" @change="handleChange" clearable filterable multiple collapse-tags>
+                <el-option v-for="{symbol, pair} in premiumIndexList" :value="symbol" :key="symbol" :label="pair.replace('USD', '')" />
             </el-select>
         </el-row>
         <el-row class="table-head" type="flex">
@@ -34,6 +34,9 @@
     }
 </style>
 <script>
+
+import {setStorage, getStorage} from '@UTIL'
+import { Storage } from '@API'
 import PremiumIndex from '@M/PremiumIndex'
 import Table from '@C/Table'
 import { createNamespacedHelpers, mapGetters as RootGetters } from 'vuex'
@@ -46,7 +49,7 @@ export default {
     data() {
         return {
             from: {
-                symbol: []
+                symbol: getStorage(Storage.PremiumIndexOptions)
             }
         }
     },
@@ -72,7 +75,10 @@ export default {
         ...mapActions([
             _M.FETCH,
             _M.RESET
-        ])
+        ]),
+        handleChange(value) {
+            setStorage(Storage.PremiumIndexOptions, value)
+        }
 
     }
 }
