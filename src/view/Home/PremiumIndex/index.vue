@@ -9,18 +9,20 @@
             <el-col>時間</el-col>
             <el-col>資產種類</el-col>
             <el-col>資金費率</el-col>
-            <el-col>USDT價格</el-col>
             <el-col class="hidden-sm-and-down">標記價格</el-col>
             <el-col class="hidden-sm-and-down">指數價格</el-col>
             <!-- <el-col>tradeId</el-col>
             <el-col>tranId</el-col> -->
         </el-row>
         <div class="table-body" ref="tableBody" :style="{height: tableBodyHeight}">
-            <el-row  type="flex" v-for="(item, i) in perpList" :key="i">
+            <el-row  type="flex" align="middle" v-for="(item, i) in perpList" :key="i">
                 <el-col>{{getDate(item.time)}}</el-col>
-                <el-col>{{item.pair.replace(/USD.*/, '')}}</el-col>
+                <el-col>
+                    <div>{{item.pair.replace(/USD.*/, '')}}</div>
+                    <div class="small" :class="+(tickers[`${item.pair}T`] || {}).P > 0 ? 'green' : 'red'">{{+(tickers[`${item.pair}T`] || {}).c}}</div>
+                    <div class="small" :class="+(tickers[`${item.pair}T`] || {}).P > 0 ? 'green' : 'red'">{{(tickers[`${item.pair}T`] || {}).P}}%</div>
+                </el-col>
                 <el-col :class="+item.lastFundingRate > 0 ? 'green' : 'red'">{{item.lastFundingRate}}</el-col>
-                <el-col>{{formatNumber(tickers[item.pair+ 'T'].c)}}</el-col>
                 <el-col class="hidden-sm-and-down">{{formatNumber(item.markPrice)}}</el-col>
                 <el-col class="hidden-sm-and-down">{{formatNumber(item.indexPrice)}}</el-col>
                 <!-- <el-col>{{item.tradeId}}</el-col>

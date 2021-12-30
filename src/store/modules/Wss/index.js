@@ -4,7 +4,7 @@ const actions = {
     async [_M.WSS_CONNECT]({ commit, dispatch, rootGetters }, payload) {
         const wss = await new WebSocket(
             // `wss://dstream.binance.com/ws/${rootGetters.listenKey}`
-            `wss://stream.binance.com:9443/ws/!miniTicker@arr`
+            `wss://stream.binance.com:9443/ws/!ticker@arr`
         )
         wss.onmessage = (stream) => {
             const { data } = stream

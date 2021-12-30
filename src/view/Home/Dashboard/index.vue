@@ -31,7 +31,11 @@
         </div>
         <div class="table-body" ref="tableBody" :style="{height: tableBodyHeight}">
             <el-row type="flex" align="middle" v-for="item in filterAccountDListAssets" :key="item.asset">
-                <el-col>{{item.asset}}</el-col>
+                <el-col>
+                    <div>{{item.asset}}</div>
+                    <div class="small" :class="+tickers[`${item.asset}USDT`].P > 0 ? 'green' : 'red'">{{+tickers[`${item.asset}USDT`].c}}</div>
+                    <div class="small" :class="+tickers[`${item.asset}USDT`].P > 0 ? 'green' : 'red'">{{tickers[`${item.asset}USDT`].P}}%</div>
+                </el-col>
                 <!-- <el-col>{{item.availableBalance}}</el-col> -->
                 <!-- <el-col>{{item.crossUnPnl}}</el-col> -->
                 <!-- <el-col>{{item.crossWalletBalance}}</el-col> -->
@@ -50,8 +54,8 @@
                 </el-col>
                 <!-- <el-col>{{item.openOrderInitialMargin}}</el-col> -->
                 <!-- <el-col>{{item.positionInitialMargin}}</el-col> -->
-                <el-col :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">
-                    <div>{{item.unrealizedProfit}}</div>
+                <el-col>
+                    <div :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">{{item.unrealizedProfit}}</div>
                     <div class="small">{{getUSD(item.unrealizedProfit, item)}}</div>
                     <div class="small">{{getUSDT(item.unrealizedProfit, item)}}</div>
                 </el-col>
@@ -96,7 +100,11 @@
             </el-card>
             <el-card class="box-card" v-for="item in filterAccountDListAssets" :key="item.asset">
                 <el-row class="card-header" type="flex" slot="header" >
-                    <el-col>{{item.asset}}</el-col>
+                    <el-col>
+                        <span>{{item.asset}}</span>
+                        <span class="small" :class="+tickers[`${item.asset}USDT`].P > 0 ? 'green' : 'red'">{{+tickers[`${item.asset}USDT`].c}}</span>
+                        <span class="small" :class="+tickers[`${item.asset}USDT`].P > 0 ? 'green' : 'red'">{{tickers[`${item.asset}USDT`].P}}%</span>
+                    </el-col>
                     <el-col class="card-head_right right">
                         <router-link :to="{name: 'Income', query: {symbol: `${item.asset}USD_PERP`}}"><el-button type="text">歷史流水</el-button></router-link>
                         <router-link :to="{name: 'FundingRate', query: {symbol: `${item.asset}USD_PERP`}}"><el-button type="text">歷史費率</el-button></router-link>
@@ -208,8 +216,11 @@ export default {
             return (num * usdPrice).strip().toFixed(4) + ' USD'
         },
         getUSDT(num, {asset}) {
-            const usdtPrice = this.tickers[`${asset}USDT`].c
-            return (num * usdtPrice).strip().toFixed(4) + ' USDT'
+            if (this.tickers[`${asset}USDT`]) {
+                const usdtPrice = this.tickers[`${asset}USDT`].c
+                return (num * usdtPrice).strip().toFixed(4) + ' USDT'
+            }
+            return ''
         }
     }
 }
