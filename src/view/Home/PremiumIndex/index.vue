@@ -8,7 +8,8 @@
         <el-row class="table-head" type="flex">
             <el-col>時間</el-col>
             <el-col>資產種類</el-col>
-            <el-col>最近更新的資金費率</el-col>
+            <el-col>資金費率</el-col>
+            <el-col>USDT價格</el-col>
             <el-col class="hidden-sm-and-down">標記價格</el-col>
             <el-col class="hidden-sm-and-down">指數價格</el-col>
             <!-- <el-col>tradeId</el-col>
@@ -19,6 +20,7 @@
                 <el-col>{{getDate(item.time)}}</el-col>
                 <el-col>{{item.pair.replace(/USD.*/, '')}}</el-col>
                 <el-col :class="+item.lastFundingRate > 0 ? 'green' : 'red'">{{item.lastFundingRate}}</el-col>
+                <el-col>{{formatNumber(tickers[item.pair+ 'T'].c)}}</el-col>
                 <el-col class="hidden-sm-and-down">{{formatNumber(item.markPrice)}}</el-col>
                 <el-col class="hidden-sm-and-down">{{formatNumber(item.indexPrice)}}</el-col>
                 <!-- <el-col>{{item.tradeId}}</el-col>
@@ -63,7 +65,8 @@ export default {
     },
     computed: {
         ...RootGetters([
-            'premiumIndexList'
+            'premiumIndexList',
+            'tickers'
         ]),
         perpList() {
             return this.premiumIndexList

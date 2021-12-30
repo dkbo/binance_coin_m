@@ -46,20 +46,24 @@
                 <el-col>
                     <div>{{item.maxWithdrawAmount}}</div>
                     <div class="small">{{getUSD(item.maxWithdrawAmount, item)}}</div>
+                    <div class="small">{{getUSDT(item.maxWithdrawAmount, item)}}</div>
                 </el-col>
                 <!-- <el-col>{{item.openOrderInitialMargin}}</el-col> -->
                 <!-- <el-col>{{item.positionInitialMargin}}</el-col> -->
                 <el-col :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">
                     <div>{{item.unrealizedProfit}}</div>
                     <div class="small">{{getUSD(item.unrealizedProfit, item)}}</div>
+                    <div class="small">{{getUSDT(item.unrealizedProfit, item)}}</div>
                 </el-col>
                 <el-col>
                     <div>{{item.walletBalance}}</div>
                     <div class="small">{{getUSD(item.walletBalance, item)}}</div>
+                    <div class="small">{{getUSDT(item.walletBalance, item)}}</div>
                 </el-col>
                 <el-col>
                     <div>{{item.marginBalance}}</div>
                     <div class="small">{{getUSD(item.marginBalance, item)}}</div>
+                    <div class="small">{{getUSDT(item.marginBalance, item)}}</div>
                 </el-col>
             </el-row>
         </div>
@@ -123,6 +127,7 @@
                             <el-col>
                                 <div>{{item.maxWithdrawAmount}}</div>
                                 <div class="small">{{getUSD(item.maxWithdrawAmount, item)}}</div>
+                                <div class="small">{{getUSDT(item.maxWithdrawAmount, item)}}</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -132,6 +137,7 @@
                             <el-col>
                                 <div :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">{{item.unrealizedProfit}}</div>
                                 <div class="small">{{getUSD(item.unrealizedProfit, item)}}</div>
+                                <div class="small">{{getUSDT(item.unrealizedProfit, item)}}</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -141,6 +147,7 @@
                             <el-col>
                                 <div :class="+item.walletBalance > 0 ? 'green' : 'red'">{{item.walletBalance}}</div>
                                 <div class="small">{{getUSD(item.walletBalance, item)}}</div>
+                                <div class="small">{{getUSDT(item.walletBalance, item)}}</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -150,6 +157,7 @@
                             <el-col>
                                 <div :class="+item.marginBalance > 0 ? 'green' : 'red'">{{item.marginBalance}}</div>
                                 <div class="small">{{getUSD(item.marginBalance, item)}}</div>
+                                <div class="small">{{getUSDT(item.marginBalance, item)}}</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -178,7 +186,8 @@ export default {
     },
     computed: {
         ...rootGetters([
-            'filterAccountDListAssets'
+            'filterAccountDListAssets',
+            'tickers'
         ]),
         sumUnrealizedProfit() {
             return this.filterAccountDListAssets.reduce((a, b) => a + (b.unrealizedProfit * b.usdPrice), 0).strip().toFixed(4) + ' USD'
@@ -197,6 +206,10 @@ export default {
         ]),
         getUSD(num, {usdPrice}) {
             return (num * usdPrice).strip().toFixed(4) + ' USD'
+        },
+        getUSDT(num, {asset}) {
+            const usdtPrice = this.tickers[`${asset}USDT`].c
+            return (num * usdtPrice).strip().toFixed(4) + ' USDT'
         }
     }
 }
