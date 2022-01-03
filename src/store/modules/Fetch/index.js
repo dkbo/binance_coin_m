@@ -13,7 +13,7 @@ const statusHandle = {
             type: 'warning',
             showClose: false,
             distinguishCancelAndClose: true
-        }).then(() => (location.href = '/'))
+        })
         return false
     },
     403: res => {
@@ -22,7 +22,7 @@ const statusHandle = {
             type: 'warning',
             showClose: false,
             distinguishCancelAndClose: true
-        }).then(() => (location.href = '/'))
+        })
         return false
     },
     404: res => {
