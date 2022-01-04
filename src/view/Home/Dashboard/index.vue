@@ -39,9 +39,9 @@
                 <!-- <el-col>{{item.availableBalance}}</el-col> -->
                 <!-- <el-col>{{item.crossUnPnl}}</el-col> -->
                 <!-- <el-col>{{item.crossWalletBalance}}</el-col> -->
-                <el-col :class="+item.ddd > 0 ? 'green' : 'red'">{{item.ddd}}</el-col>
-                <el-col :class="+item.ccc > 0 ? 'green' : 'red'">
-                    <div>{{item.ccc}}</div>
+                <el-col :class="+item.lastFundingRate > 0 ? 'green' : 'red'">{{item.lastFundingRate}}</el-col>
+                <el-col :class="+item.lastFundingCount > 0 ? 'green' : 'red'">
+                    <div>{{item.lastFundingCount}}</div>
                 </el-col>
                 <!-- <el-col>{{item.maintMargin}}</el-col> -->
                 <el-col>
@@ -114,13 +114,13 @@
                     <div class="item">
                         <el-row type="flex">
                             <el-col>即時費率</el-col>
-                            <el-col :class="+item.ddd > 0 ? 'green' : 'red'">{{item.ddd}}</el-col>
+                            <el-col :class="+item.lastFundingRate > 0 ? 'green' : 'red'">{{item.lastFundingRate}}</el-col>
                         </el-row>
                     </div>
                     <div class="item" >
                         <el-row type="flex">
                             <el-col>預估套利</el-col>
-                            <el-col :class="+item.ccc > 0 ? 'green' : 'red'">{{item.ccc}}</el-col>
+                            <el-col :class="+item.lastFundingCount > 0 ? 'green' : 'red'">{{item.lastFundingCount}}</el-col>
                         </el-row>
                     </div>
                     <div class="item">

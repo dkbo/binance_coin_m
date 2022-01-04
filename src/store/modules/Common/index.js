@@ -43,8 +43,8 @@ const getters = {
             .map((data) => {
                 const data2 = state.premiumIndexList.find(({symbol}) => symbol === `${data.asset}USD_PERP`)
                 if (data2) {
-                    data.ddd = data2.interestRate
-                    data.ccc = (data2.interestRate * data.positionInitialMargin).strip()
+                    data.lastFundingRate = data2.lastFundingRate
+                    data.lastFundingCount = (data2.lastFundingRate * data.positionInitialMargin).strip()
                     data.usdPrice = data2.markPrice
                 }
                 return data
