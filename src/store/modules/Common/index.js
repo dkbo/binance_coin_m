@@ -9,6 +9,7 @@ const state = {
     accountDList: [],
     premiumIndexList: [],
     tickers: {},
+    tickers2: {},
     listenKey: ''
 }
 
@@ -51,7 +52,8 @@ const getters = {
             })
     },
     listenKey: state => state.listenKey,
-    tickers: state => state.tickers
+    tickers: state => state.tickers,
+    tickers2: state => state.tickers2
 }
 
 export default {

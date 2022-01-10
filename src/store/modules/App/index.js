@@ -20,7 +20,7 @@ const actions = {
                 key: 'listenkeyD_U',
                 temp: 'listenKey'
             })
-            dispatch(_M.WSS_CONNECT)
+            await dispatch(_M.WSS_CONNECT)
         }
     },
     async [_M.FETCH_LOGIN](actions, payload) {

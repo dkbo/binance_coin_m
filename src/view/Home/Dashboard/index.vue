@@ -10,6 +10,7 @@
             <el-col>預估套利</el-col>
             <!-- <el-col>maintMargin</el-col> -->
             <el-col>保證金</el-col>
+            <el-col>期現價差(USDT/USD)</el-col>
             <el-col>可用金</el-col>
             <!-- <el-col>openOrderInitialMargin</el-col> -->
             <!-- <el-col>positionInitialMargin</el-col> -->
@@ -20,6 +21,7 @@
         <div class="table-head">
             <el-row type="flex">
                 <el-col>總計</el-col>
+                <el-col></el-col>
                 <el-col></el-col>
                 <el-col></el-col>
                 <el-col></el-col>
@@ -47,26 +49,25 @@
                 <el-col>
                     <div>{{item.positionInitialMargin}}</div>
                 </el-col>
+                <el-col :class="getPremium(item) > 0 ? 'green' : 'red'">
+                    <div>{{getPremium(item).toFixed(4) + '%'}}</div>
+                </el-col>
                 <el-col>
                     <div>{{item.maxWithdrawAmount}}</div>
-                    <div class="small">{{getUSD(item.maxWithdrawAmount, item)}}</div>
                     <div class="small">{{getUSDT(item.maxWithdrawAmount, item)}}</div>
                 </el-col>
                 <!-- <el-col>{{item.openOrderInitialMargin}}</el-col> -->
                 <!-- <el-col>{{item.positionInitialMargin}}</el-col> -->
                 <el-col>
                     <div :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">{{item.unrealizedProfit}}</div>
-                    <div class="small">{{getUSD(item.unrealizedProfit, item)}}</div>
                     <div class="small">{{getUSDT(item.unrealizedProfit, item)}}</div>
                 </el-col>
                 <el-col>
                     <div>{{item.walletBalance}}</div>
-                    <div class="small">{{getUSD(item.walletBalance, item)}}</div>
                     <div class="small">{{getUSDT(item.walletBalance, item)}}</div>
                 </el-col>
                 <el-col>
                     <div>{{item.marginBalance}}</div>
-                    <div class="small">{{getUSD(item.marginBalance, item)}}</div>
                     <div class="small">{{getUSDT(item.marginBalance, item)}}</div>
                 </el-col>
             </el-row>
@@ -131,10 +132,17 @@
                     </div>
                     <div class="item">
                         <el-row type="flex" align="middle">
+                            <el-col>期現價差(USDT/USD)</el-col>
+                            <el-col>
+                                <div :class="getPremium(item) > 0 ? 'green' : 'red'">{{getPremium(item).toFixed(4) + '%'}}</div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                    <div class="item">
+                        <el-row type="flex" align="middle">
                             <el-col>可用金</el-col>
                             <el-col>
                                 <div>{{item.maxWithdrawAmount}}</div>
-                                <div class="small">{{getUSD(item.maxWithdrawAmount, item)}}</div>
                                 <div class="small">{{getUSDT(item.maxWithdrawAmount, item)}}</div>
                             </el-col>
                         </el-row>
@@ -144,7 +152,6 @@
                             <el-col>未實現盈虧</el-col>
                             <el-col>
                                 <div :class="+item.unrealizedProfit > 0 ? 'green' : 'red'">{{item.unrealizedProfit}}</div>
-                                <div class="small">{{getUSD(item.unrealizedProfit, item)}}</div>
                                 <div class="small">{{getUSDT(item.unrealizedProfit, item)}}</div>
                             </el-col>
                         </el-row>
@@ -154,7 +161,6 @@
                             <el-col>錢包</el-col>
                             <el-col>
                                 <div :class="+item.walletBalance > 0 ? 'green' : 'red'">{{item.walletBalance}}</div>
-                                <div class="small">{{getUSD(item.walletBalance, item)}}</div>
                                 <div class="small">{{getUSDT(item.walletBalance, item)}}</div>
                             </el-col>
                         </el-row>
@@ -164,7 +170,6 @@
                             <el-col>總資產</el-col>
                             <el-col>
                                 <div :class="+item.marginBalance > 0 ? 'green' : 'red'">{{item.marginBalance}}</div>
-                                <div class="small">{{getUSD(item.marginBalance, item)}}</div>
                                 <div class="small">{{getUSDT(item.marginBalance, item)}}</div>
                             </el-col>
                         </el-row>
@@ -195,16 +200,17 @@ export default {
     computed: {
         ...rootGetters([
             'filterAccountDListAssets',
-            'tickers'
+            'tickers',
+            'tickers2'
         ]),
         sumUnrealizedProfit() {
-            return this.filterAccountDListAssets.reduce((a, b) => a + (b.unrealizedProfit * b.usdPrice), 0).strip().toFixed(4) + ' USD'
+            return this.filterAccountDListAssets.reduce((a, b) => a + (b.unrealizedProfit * (this.tickers[`${b.asset}USDT`] || {}).c || 0), 0).strip().toFixed(4) + ' USDT'
         },
         sumWalletBalance() {
-            return this.filterAccountDListAssets.reduce((a, b) => a + (b.walletBalance * b.usdPrice), 0).strip().toFixed(4) + ' USD'
+            return this.filterAccountDListAssets.reduce((a, b) => a + (b.walletBalance * (this.tickers[`${b.asset}USDT`] || {}).c || 0), 0).strip().toFixed(4) + ' USDT'
         },
         sumMarginBalance() {
-            return this.filterAccountDListAssets.reduce((a, b) => a + (b.marginBalance * b.usdPrice), 0).strip().toFixed(4) + ' USD'
+            return this.filterAccountDListAssets.reduce((a, b) => a + (b.marginBalance * (this.tickers[`${b.asset}USDT`] || {}).c || 0), 0).strip().toFixed(4) + ' USDT'
         }
     },
     methods: {
@@ -221,6 +227,16 @@ export default {
                 return (num * usdtPrice).strip().toFixed(4) + ' USDT'
             }
             return ''
+        },
+        getPremium({asset}) {
+            if (this.tickers[`${asset}USDT`] && this.tickers2[`${asset}USD_PERP`]) {
+                const usdtPrice = this.tickers[`${asset}USDT`].c
+                const usdPrice = this.tickers2[`${asset}USD_PERP`].c
+                const diff = usdtPrice - usdPrice
+                const premium = (diff / usdPrice * 100)
+                return premium
+            }
+            return 0
         }
     }
 }
