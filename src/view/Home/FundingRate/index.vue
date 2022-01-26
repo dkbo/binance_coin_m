@@ -11,6 +11,13 @@
             <el-col>資產種類</el-col>
             <el-col>資金費率</el-col>
         </el-row>
+        <div class="table-head">
+            <el-row type="flex">
+                <el-col>總計</el-col>
+                <el-col>年化 APR: {{(sumIncome / list.length * 1095 * 100).toFixed(2) + '%'}}</el-col>
+                <el-col>平均費率: {{(sumIncome / list.length * 100).toFixed(4) + '%'}}</el-col>
+            </el-row>
+        </div>
         <div class="table-body" ref="tableBody" :style="{height: tableBodyHeight}">
             <el-row  type="flex" v-for="(item, i) in list" :key="i">
                 <el-col>{{getDate(item.fundingTime)}}</el-col>
@@ -39,7 +46,8 @@ export default {
     data() {
         return {
             from: {
-                symbol: 'SOLUSD_PERP'
+                symbol: 'SOLUSD_PERP',
+                limit: 100
             }
         }
     },
@@ -58,7 +66,10 @@ export default {
         ]),
         ...mapGetters([
             'list'
-        ])
+        ]),
+        sumIncome() {
+            return this.list.reduce((a, b) => a + +b.fundingRate, 0).strip()
+        }
     },
     methods: {
         ...mapActions([
