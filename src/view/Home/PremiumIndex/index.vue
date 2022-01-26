@@ -22,7 +22,7 @@
                     <div class="small" :class="+(tickers[`${item.pair}T`] || {}).P > 0 ? 'green' : 'red'">{{+(tickers[`${item.pair}T`] || {}).c}}</div>
                     <div class="small" :class="+(tickers[`${item.pair}T`] || {}).P > 0 ? 'green' : 'red'">{{(tickers[`${item.pair}T`] || {}).P}}%</div>
                 </el-col>
-                <el-col :class="+item.lastFundingRate > 0 ? 'green' : 'red'">{{item.lastFundingRate}}</el-col>
+                <el-col :class="+item.lastFundingRate > 0 ? 'green' : 'red'">{{ (item.lastFundingRate * 100).toFixed(4) + '%'}}</el-col>
                 <el-col class="hidden-sm-and-down">{{formatNumber(item.markPrice)}}</el-col>
                 <el-col class="hidden-sm-and-down">{{formatNumber(item.indexPrice)}}</el-col>
                 <!-- <el-col>{{item.tradeId}}</el-col>

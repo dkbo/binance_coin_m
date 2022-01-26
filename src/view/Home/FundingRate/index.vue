@@ -15,7 +15,7 @@
             <el-row  type="flex" v-for="(item, i) in list" :key="i">
                 <el-col>{{getDate(item.fundingTime)}}</el-col>
                 <el-col>{{item.symbol.replace(/USD.*/, '')}}</el-col>
-                <el-col :class="+item.fundingRate > 0 ? 'green' : 'red'">{{item.fundingRate}}</el-col>
+                <el-col :class="+item.fundingRate > 0 ? 'green' : 'red'">{{(item.fundingRate * 100).toFixed(4) + '%'}}</el-col>
             </el-row>
         </div>
     </div>
