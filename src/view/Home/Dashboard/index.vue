@@ -34,7 +34,7 @@
         <div class="table-body" ref="tableBody" :style="{height: tableBodyHeight}">
             <el-row type="flex" align="middle" v-for="item in filterAccountDListAssets" :key="item.asset">
                 <el-col>
-                    <div>{{item.asset}}</div>
+                    <div @click="goTo(item)">{{item.asset}}</div>
                     <div class="small" :class="+tickers[`${item.asset}USDT`].P > 0 ? 'green' : 'red'">{{+tickers[`${item.asset}USDT`].c}}</div>
                     <div class="small" :class="+tickers[`${item.asset}USDT`].P > 0 ? 'green' : 'red'">{{tickers[`${item.asset}USDT`].P}}%</div>
                 </el-col>
@@ -218,6 +218,9 @@ export default {
             _M.FETCH,
             _M.RESET
         ]),
+        goTo(item) {
+            window.open(`https://www.binance.com/zh-TW/delivery/${item.asset}usd_perpetual`)
+        },
         getUSD(num, {usdPrice}) {
             return (num * usdPrice).strip().toFixed(4) + ' USD'
         },
